@@ -15,9 +15,23 @@ export const keeperSlice = createSlice({
       const keeper=action.payload
       const storedItem=JSON.parse(localStorage.getItem("keepers")) || []
       const isDuplicate=storedItem.some(k=>k.title===keeper.title)
+      const isEmpty=keeper.title==='' && keeper.content===''
+      const isTitleEmpty=keeper.title===''
+      const isContentEmpty=keeper.content===''
+
       if(isDuplicate)(
         toast("Give a different title")
       )
+      else if(isEmpty){
+        toast("Keep Something First")
+      }
+      else if(isTitleEmpty){
+        toast("Provide A Title")
+      }
+      else if(isContentEmpty){
+        toast("Provide A Content")
+      }
+
       else{
         state.keepers.push(keeper)
         localStorage.setItem("keepers",JSON.stringify(state.keepers))

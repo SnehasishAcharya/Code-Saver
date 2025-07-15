@@ -11,6 +11,14 @@ const Home = () => {
     const keeperId=searchParams.get("keeperId")
     const dispatch=useDispatch()
     const allKeeper=useSelector((state)=>state.keeper.keepers)
+    const isoDate=new Date().toISOString()
+    const date=new Date(isoDate)
+    const formatDate=date.toLocaleDateString("en-us",{
+      month:"long",
+      day:"numeric",
+      year:"numeric"
+
+    })
     useEffect(()=>{
       if(keeperId){
         const keeper=allKeeper.find((item)=>
@@ -26,7 +34,7 @@ const Home = () => {
         title:title,
         content:value,
         _id:keeperId||Date.now().toString(36),
-        createdAt:new Date().toISOString()
+        createdAt:formatDate
 
       }
       if(keeperId){
