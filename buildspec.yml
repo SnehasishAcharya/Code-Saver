@@ -1,21 +1,18 @@
-version: 0.0
-os: linux
-files:
-  - source: /
-    destination: /home/ec2-user/app
+version: 0.2
 
-hooks:
-  BeforeInstall:
-    - location: scripts/before_install.sh
-      timeout: 300
-      runas: ec2-user
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - echo Installing dependencies...
+      - npm install
 
-  AfterInstall:
-    - location: scripts/after_install.sh
-      timeout: 300
-      runas: ec2-user
+  build:
+    commands:
+      - echo Build started...
+      - npm run build
 
-  ApplicationStart:
-    - location: scripts/start_server.sh
-      timeout: 300
-      runas: ec2-user
+artifacts:
+  files:
+    - '**/*'
