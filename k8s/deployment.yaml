@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-saver-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: code-saver
+  template:
+    metadata:
+      labels:
+        app: code-saver
+    spec:
+      containers:
+        - name: code-saver
+          image: snehasish2920/code-saver:latest
+          ports:
+            - containerPort: 80
