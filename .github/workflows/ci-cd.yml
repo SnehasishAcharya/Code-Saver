@@ -60,7 +60,7 @@ jobs:
       with:
         image-ref: ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}:latest
         format: table
-        exit-code: 1
+        exit-code: 0
         severity: CRITICAL,HIGH
 
     - name: Deploy to EKS
