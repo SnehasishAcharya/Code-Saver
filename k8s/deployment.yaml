@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-saver
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: code-saver
+  template:
+    metadata:
+      labels:
+        app: code-saver
+    spec:
+      containers:
+        - name: code-saver
+          image: ghcr.io/snehasishacharya/code-saver:latest
+          ports:
+            - containerPort: 3000
